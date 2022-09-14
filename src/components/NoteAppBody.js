@@ -1,21 +1,23 @@
 import React from 'react';
-import NoteActive from './section/NoteActive';
 import NoteInput from './NoteInput';
-import NoteArchive from './section/NoteArchive';
+import NoteItemList from './section/NoteItemList';
 
 function NoteAppBody({ notes, onDelete, onArchive, onAddNotes }) {
   return (
     <div className='note-app__body'>
       <NoteInput onAddNotes={onAddNotes} />
-      <NoteActive
+
+      <NoteItemList
+        isArchived={false}
         notes={notes.filter((note) => note.archived === false)}
         onDelete={onDelete}
         onArchive={onArchive}
       />
-      <NoteArchive
+      <NoteItemList
+        isArchived={true}
         notes={notes.filter((note) => note.archived === true)}
-        onArchive={onArchive}
         onDelete={onDelete}
+        onArchive={onArchive}
       />
     </div>
   );
